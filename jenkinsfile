@@ -1,9 +1,9 @@
 pipeline {
   agent any
   environment {
-    ID_CRED     = credentials('id_cred')
-    CLI = credentials('cli')
-    AZUTENA     = credentials('azutena')
+    ID_CLIENT     = credentials('id_client')
+    SECRET = credentials('secret')
+    TENANT     = credentials('tenant')
   }
 
   stages {
@@ -16,7 +16,7 @@ pipeline {
 
     stage('Autenticacion de azure'){
       steps {
-          sh 'az login --service-principal -u $ID -p $CLIENT -t $TID '
+          sh 'az login --service-principal -u $ID_CLIENT -p $SECRET -t $TENANT'
             echo "Autentizado a azure con éxito"
         
       }
